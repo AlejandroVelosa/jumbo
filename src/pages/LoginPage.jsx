@@ -1,27 +1,39 @@
 import { useForm } from "react-hook-form"
 import useAuth from "../hooks/useAuth"
 import './Styles/Login.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const LoginPage = () => {
 
-    const { register, reset, handleSubmit } = useForm()
+    const { register, reset, handleSubmit } = useForm();
+    const { loginUser } = useAuth();
+    const navigate = useNavigate();
 
-    const { loginUser } = useAuth()
+    useEffect(() => {
+        const isAuthenticated = localStorage.getItem('token');
+        if (isAuthenticated) {
+            navigate('/dashboard');
+        }
+    }, [navigate]);
 
-
-
-
-
-
-    const submit = data => {
-        const url = 'https://e-commerce-api-v2.academlo.tech/api/v1/users/login'
+    const submit = (data) => {
+        const url = 'https://e-commerce-api-v2.academlo.tech/api/v1/users/login';
         loginUser(url, data)
+            .then((res) => {
+                console.log('Inicio de sesión exitoso', res);
+                // Redireccionar a la página de dashboard
+                navigate('/dashboard');
+            })
+            .catch((err) => {
+                console.log('Error de inicio de sesión', err);
+            });
+
         reset({
             email: '',
             password: '',
-        })
-    }
+        });
+    };
 
 
 
