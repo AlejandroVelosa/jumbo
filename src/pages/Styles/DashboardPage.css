@@ -22,10 +22,7 @@
     color: var(--color-red);
 }
 
-p {
-    color: var(--color-red);
-    font-weight: 600;
-}
+
 
 .input_correo {
     display: flex;
