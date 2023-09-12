@@ -37,11 +37,11 @@ const CartProducts = ({ prod }) => {
             <section className='product_body'>
                 <header className='product_titles'>
                     <h3 className='product_brand'>{prod.brand}</h3>
-                    <h2 className='product_name'>{prod.title}</h2>
+                    <h2 className='product_name'>{prod.title} </h2>
                 </header>
                 <article className='product_price'>
                     <span className='product_price-label'>Price</span>
-                    <h3 className='product_price-value'>{prod.price}</h3>
+                    <h3 className='product_price-value'>{prod.price} $</h3>
                 </article>
                 <button className='product_btn' onClick={handleAddCart}>
                     <i className='bx bx-cart'></i>
